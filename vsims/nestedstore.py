@@ -42,7 +42,7 @@ class NestedStore:
 
     def has_key(self, key):
         """Determines if the store contains the key."""
-        return self.store.has_key(key)
+        return key in self.store
 
     def delete(self, key, doLog=True):
         """Deletes the key from the store if present.
@@ -78,7 +78,7 @@ class NestedStore:
 
     def numequalto(self, value):
         """Returns the number of keys set to the provided value."""
-        if not self.value_counts.has_key(value):
+        if not value in self.value_counts:
             self.value_counts[value] = 0
             return 0
 
@@ -86,7 +86,7 @@ class NestedStore:
 
     def _update_value_count_(self, value, count):
         """Set or update the count for the provided value."""
-        if self.value_counts.has_key(value):
+        if value in self.value_counts:
             self.value_counts[value] += count
         else:
             self.value_counts[value] = count
